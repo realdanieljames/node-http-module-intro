@@ -57,14 +57,13 @@ const server = http.createServer((request, response) => {
         aboutPage.pipe(response)
     }
 
-    else if (request.url === undefined) {
+    else {
         response.writeHead(200, { 'Content-Type': 'text/html' })
 
-
+        const readStream = fs.createReadStream(__dirname + '/404.html', 'utf-8')
+        readStream.pipe(response)
 
     }
-})
-
 
 
 
