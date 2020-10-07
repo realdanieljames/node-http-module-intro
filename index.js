@@ -49,7 +49,7 @@ const server = http.createServer((request, response) => {
 
     }
     //  now route the page to an /about route
-    else if (request.url = '/about') {
+    else if (request.url === '/about') {
 
         response.writeHead(200, { 'Content-Type': 'text/html' })
         const aboutPage = fs.createReadStream(__dirname + '/about.html')
@@ -58,13 +58,13 @@ const server = http.createServer((request, response) => {
     }
 
     else {
-        response.writeHead(200, { 'Content-Type': 'text/html' })
+        response.writeHead(404, { 'Content-Type': 'text/html' })
 
-        const readStream = fs.createReadStream(__dirname + '/404.html', 'utf-8')
+        const readStream = fs.createReadStream(__dirname + '/404.html')
         readStream.pipe(response)
 
     }
-
+})
 
 
 // closes response and logs message to user
